@@ -14,7 +14,7 @@ If you do not currently have python > 3.6 installed, please install it from the 
 Make sure that Python is added to your PATH during installation. You might need to restart your computer after installation for it to find the Python executable.
 
 ## Program and dependencies installation
-You can download the folder in this repo to your computer. Once this is done, open up a terminal in this folder and run
+You can download the folder in this repo to your computer with the green "Code" button on this repo. Once this is done, open up a terminal in this folder and run
 
 ```
 pip install -r requirements.txt
