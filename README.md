@@ -3,7 +3,8 @@ This little script is mainly intended to help photographic labs and photo profes
 
 Tiff files are uncompressed so the only ways to reduce their file size is to resize them (here, that means reducing the amount of pixels in the image), or to convert them from 16 to 8 bits. 8-bit files are 2x lighter than equivalent pixel resolution 16-bit files so when reducing the size of a 16-bit original, a 8-bit target will give larger final pixel dimensions, as every pixel is lighter, so the image doesn't have to be downsized as much.
 
-This program lets you choose your target file size in MB, the target bit depth (8-bit is recommended, especially if you need to reduce the size by a lot), and the file extension to look for.
+This program lets you choose your target file size in MB and the target bit depth (8-bit is recommended, especially if you need to reduce the size by a lot).
+It works with files with extensions '.tif', '.tiff', '.TIF' and '.TIFF'.
 
 If the size of the original images is too high vs the target, it will resize the image down while preserving aspect ratio until the new resolution matches the target size in MB. If the original image size is already under the target, it will not get downsized any further.
 
@@ -32,21 +33,17 @@ This place to edit looks like this :
 
 ``` python
 # --------------- Only change these parameters ---------------
-# This is the terget size of your images in MB. Should be lower than the original size, but will get ignored if not
+# This is the target size of your images in MB. Should be lower than the original size, but will get ignored if not
 targetSizeMB = 50 
 
 # Target bit depth for the final image. Final 16-bit tiffs will be downsized a lot compared to 8-bit if the target file size in low (16-bit tiffs are twice as heavy as 8-bit tiffs of the same size)
 # The program will not work correctly if choosing to output 16-bit files from 8-bit originals
 targetDepth = 8
-
-# This specifies the extension of the files to convert, this is case-sensitive
-extension = 'tif'
 # ---------- Do not change anything under this line ----------
 ```
 
 - **targetSizeMB** should ideally be less than the expected original size of the files you want to convert (eg 50MB for 65MB originals).
 - **targetDepth** is the bit depth for the final images. It is **either 8 or 16**. 16 will only work if the original images are already 16-bit images.
-- **extension** is the file extension that you will be working with, usually "tif", "tiff", "TIFF"... Please note that it is case-sensitive, meaning capitalized letters matter.
 
 ## Making it happen
 Once everything is installed and configured, I recommend placing the script somewhere accessible easily (eg on your Desktop). You can duplicate it and change parameters and script names between copies to have different output options (eg one 120MB 16-bit script for high-res scans, one 20MB 8-bit script for medium res scans...)
