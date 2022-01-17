@@ -5,17 +5,22 @@ import glob
 import numpy as np
 import cv2
 
+
+
+
+
 # --------------- Only change these parameters ---------------
-# This is the terget size of your images in MB. Should be lower than the original size, but will get ignored if not
+# This is the target size of your images in MB. Should be lower than the original size, but will get ignored if not
 targetSizeMB = 50 
 
 # Target bit depth for the final image. Final 16-bit tiffs will be downsized a lot compared to 8-bit if the target file size in low (16-bit tiffs are twice as heavy as 8-bit tiffs of the same size)
 # The program will not work correctly if choosing to output 16-bit files from 8-bit originals
 targetDepth = 8
-
-# This specifies the extension of the files to convert, this is case-sensitive
-extension = 'tif'
 # ---------- Do not change anything under this line ----------
+
+
+
+
 
 # Get the folder that the user has dropped on the script
 droppedFolder = sys.argv[1]
@@ -38,8 +43,13 @@ elif targetDepth == 16:
     else:
         print('Result folder already exists')
 
-# Iterate over all images with .tif extension in the folder
-for f in glob.glob(f'{droppedFolder}/*.{extension}'):
+# Iterate over all images with tiff-like extension in the folder
+grabbed_files = glob.glob(f'{droppedFolder}/*.tif')
+grabbed_files += glob.glob(f'{droppedFolder}/*.tiff')
+grabbed_files += glob.glob(f'{droppedFolder}/*.TIF')
+grabbed_files += glob.glob(f'{droppedFolder}/*.TIFF')
+
+for f in grabbed_files:
     name = os.path.basename(f)
     location = os.path.dirname(f)
     print(name)
